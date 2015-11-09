@@ -1,0 +1,12 @@
+
+- name: "create repo dir"
+  file:
+    path: '{{repo_path}}'
+    state: directory
+
+- name: "make env.sh"
+  template:
+    src: env.sh.j2
+    dest: '{{ buildslave_base_path }}/{{ buildslave_name }}/env.sh'
+  notify:
+    - restart buildslave
